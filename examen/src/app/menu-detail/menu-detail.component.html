@@ -1,0 +1,18 @@
+<div >
+  <h2>{{detailsinformatons.title}}</h2>
+  <img src="{{detailsinformatons.image}}">
+  <p>{{detailsinformatons.description}}</p>
+  <div *ngIf="sup==false">
+    {{msgerreur}}
+  </div>
+  <div *ngIf="sup==true">
+    la valeur de l’attribut « mark » est : {{msg}}
+  </div>
+  <form [formGroup]="formNote">
+    <input type="text" formControlName="note">
+    <div *ngIf="formNote.get('note')?.invalid ">
+      <span *ngIf="formNote.get('note')?.errors?.['pattern']">uniquement un chiffre entre 1 et 5</span>
+    </div>
+    <button (click)="update(detailsinformatons.id,formNote.value)">Noter</button>
+  </form>
+</div>

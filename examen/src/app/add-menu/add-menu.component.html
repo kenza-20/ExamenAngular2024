@@ -1,0 +1,15 @@
+<form [formGroup]="formAddMenu" >
+  <h2>Menu à proposer </h2><br>
+  <label>Titre</label>
+  <input type="text" formControlName="titre"><br>
+  <div *ngIf="formAddMenu.get('titre')?.invalid && formAddMenu.get('titre')?.touched">
+    <span *ngIf="formAddMenu.get('titre')?.errors?.['required']">Titre obligatoire</span>
+  </div>
+  <label>Description</label>
+  <input type="text" formControlName="desc"><br>
+  <div *ngIf="formAddMenu.get('desc')?.invalid">
+    <span *ngIf="formAddMenu.get('desc')?.errors?.['minlength']">Minimum 10 caractères</span>
+  </div>
+  <button (click)="ajouter(formAddMenu.value)" [disabled]="formAddMenu.invalid">Ajouter</button>
+
+</form>
